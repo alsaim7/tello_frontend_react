@@ -46,7 +46,7 @@ export function Navbar({setCurrentUser, currentUser}) {
                     className="text-2xl font-bold tracking-tight"
                     onClick={() => setIsOpen(false)} // Close menu on logo click
                 >
-                    Tello <span style={{color:'red'}}>.</span>
+                    MyTello <span style={{color:'red'}}>.</span>
                 </NavLink>
 
                 {/* Hamburger Button for Mobile */}
