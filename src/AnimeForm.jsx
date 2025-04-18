@@ -124,7 +124,7 @@ export function AnimeForm() {
                             name="anime_description"
                             value={formData.anime_description}
                             onChange={handleChange}
-                            placeholder="placeholder"
+                            placeholder="Write your tale..........."
                         />
                         <Button
                             variant="contained"
