@@ -96,60 +96,69 @@ export function Navbar({ setCurrentUser, currentUser }) {
                             <NavLink
                                 to="/"
                                 className={({ isActive }) =>
-                                    `py-2 md:py-0 text-white hover:text-gray-300 transition-colors ${isActive ? 'font-bold underline' : ''
+                                    `py-2 md:py-0 text-white hover:text-gray-300 ${isActive ? 'font-bold underline' : ''
                                     }`
                                 }
-                                onClick={() => setIsOpen(false)}
+                                onClick={() => setIsOpen(false)} // Close menu on link click
                             >
                                 Home
                             </NavLink>
                             <NavLink
                                 to={isLoggedIn ? '/create' : '/login'}
-                                className={({ isActive }) =>
-                                    `py-2 md:py-0 text-white hover:text-gray-300 transition-colors ${isActive ? 'font-bold underline' : ''
-                                    }`
-                                }
+                                className={() => {
+                                    const activePath = isLoggedIn ? '/create' : '';
+                                    return `py-2 md:py-0 text-white hover:text-gray-300 ${location.pathname === activePath ? 'font-bold underline' : ''
+                                        }`;
+                                }}
                                 onClick={() => setIsOpen(false)}
                             >
                                 Create
                             </NavLink>
-                            {!isLoggedIn ? (
+                            {isLoggedIn ? null : (
                                 <>
                                     <NavLink
                                         to="/login"
                                         className={({ isActive }) =>
-                                            `py-2 md:py-0 text-white hover:text-gray-300 transition-colors ${isActive ? 'font-bold underline' : ''
+                                            `py-2 md:py-0 text-white hover:text-gray-300 ${isActive ? 'font-bold underline' : ''
                                             }`
                                         }
-                                        onClick={() => setIsOpen(false)}
+                                        onClick={() => setIsOpen(false)} // Close menu on link click
                                     >
                                         Login
                                     </NavLink>
                                     <NavLink
                                         to="/register"
                                         className={({ isActive }) =>
-                                            `py-2 md:py-0 text-white hover:text-gray-300 transition-colors ${isActive ? 'font-bold underline' : ''
+                                            `py-2 md:py-0 text-white hover:text-gray-300 ${isActive ? 'font-bold underline' : ''
                                             }`
                                         }
-                                        onClick={() => setIsOpen(false)}
+                                        onClick={() => setIsOpen(false)} // Close menu on link click
                                     >
                                         Register
                                     </NavLink>
                                 </>
-                            ) : (
+                            )}
+
+
+                            {isLoggedIn && (
                                 <NavLink
                                     to="/login"
-                                    className="py-2 md:py-0 text-white hover:text-gray-300 transition-colors"
+                                    // className={({ isActive }) =>
+                                    //     `py-2 md:py-0 text-white hover:text-gray-300 ${isActive ? 'font-bold underline' : ''
+                                    //     }`
+                                    // }
+                                    className={'py-2 md:py-0 text-white hover:text-gray-300'}
                                     onClick={() => {
-                                        localStorage.removeItem('token');
-                                        setCurrentUser(null);
-                                        navigate('/login');
-                                        setIsOpen(false);
-                                    }}
+                                        localStorage.removeItem('token')
+                                        setCurrentUser(null)
+                                        navigate('/login') // or navigate using React Router
+                                    }} // Close menu on link click
                                 >
+
                                     Logout
                                 </NavLink>
                             )}
+
                         </div>
                     </div>
                 </div>
