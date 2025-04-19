@@ -9,6 +9,7 @@ import { Link } from "react-router-dom";
 import 'boxicons'
 import { useNavigate } from "react-router-dom";
 import {AnimeListSkeleton} from "./Skeleton";
+import { Footer } from "./Footer";
 
 
 export function AnimeList() {
@@ -34,6 +35,7 @@ export function AnimeList() {
 
 
     return (
+        <>
         <div className="min-h-screen bg-gray-100 py-8 px-4 sm:px-6 lg:px-8">
     
             <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-center mb-8 text-gray-800 tracking-tight">Story List</h1>
@@ -131,6 +133,9 @@ export function AnimeList() {
                     )
                 })}
             </div>
+           
         </div>
+            <Footer />
+        </>
     )
 }

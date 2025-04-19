@@ -36,7 +36,7 @@ export function UserProfile({ currentUser }) {
             // console.log(res.data)
             setUserDetails(res.data)
             setSkeleton(false)
-        } catch {
+        } catch(err) {
             if (err.response && err.response.data && err.response.data.detail) {
                 setError(err.response.data.detail)
             } else {
