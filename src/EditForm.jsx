@@ -85,7 +85,7 @@ export function EditForm() {
     const handleSubmit = (e) => {
         e.preventDefault()
         setLoading(true)
-        if (!formData.anime_name || !formData.anime_description) {
+        if (!formData.anime_name.trim() || !formData.anime_description.trim()) {
             setLoading(false)
             setOpen(true)
             setError("Please fill both rwquired fields!")

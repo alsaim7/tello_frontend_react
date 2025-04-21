@@ -39,7 +39,7 @@ export function RegisterForm() {
         e.preventDefault()
         setLoading(true)
         // Basic frontend validation
-        if (!formData.username || !formData.password) {
+        if (!formData.username.trim() || !formData.password.trim()) {
             setLoading(false)
             setOpen(true)
             setError("Please enter both username and password")

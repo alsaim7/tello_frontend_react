@@ -1,4 +1,6 @@
-import { useState, useEffect } from "react"
+import { useLocation } from "react-router-dom"
+
+import { useState } from "react";
 
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
@@ -10,66 +12,59 @@ import 'boxicons'
 import { useNavigate } from "react-router-dom";
 import { AnimeListSkeleton } from "./Skeleton";
 import { Footer } from "./Footer";
-
 import { Search } from "./Search";
-import { CircularProgress, Box, Stack, Alert } from "@mui/material";
 
+import { CircularProgress, Box, Stack, Alert} from "@mui/material";
 
-export function AnimeList() {
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
-    const [animeList, setAnimeList] = useState([])
+export function SearchPage() {
+    const location = useLocation()
+    const searchResult = location.state.result
+    const searchData = location.state.searchData
+    // console.log(searchResult)
     const [loader, setLoader] = useState(false)
-
     const [error, setError] = useState()
     const [open, setOpen] = useState(false)
 
-    const VITE_BASE_URL = import.meta.env.VITE_BASE_URL
-    // const url = "http://127.0.0.1:8000/tello"
-    const url = `${VITE_BASE_URL}/tello`
-    // console.log(VITE_BASE_URL)
-
     const navigate= useNavigate()
-    const fetchData = async () => {
-        try{
-            const res = await fetch(url)
-            const resJson = await res.json()
-            setAnimeList(resJson)
-        }catch(err){
-            if (err.response && err.response.data && err.response.data.detail) {
-                console.error(err.response.data.detail)
-            } else {
-                console.error("Something went wrong. Please try again.")
-            }
-        }
-        
-    }
-    useEffect(() => {
-        fetchData()
-    }, [])
-
-
 
     return (
         <>
-
             <div className="min-h-screen bg-gray-100 py-8 px-4 sm:px-6 lg:px-8">
 
-                {open === true ? <Stack sx={{ width: '100%', mb: 2 }} spacing={2}>
+                {open === true ? <Stack sx={{ width: '100%', mb:2 }} spacing={2}>
                     <Alert severity="error" onClose={() => { setOpen(false) }}>
                         {error}
                     </Alert>
                 </Stack> : null}
 
-                <Search setLoader={setLoader} setError={setError} setOpen={setOpen}/>
+               <Search setLoader={setLoader} setError={setError} setOpen={setOpen} />
                 {loader ? <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: "center", height: '50vh' }}>
                     <CircularProgress size={70} color="#111827" />
                 </Box> :
                     <>
-                        <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-center mb-8 text-gray-800 tracking-tight">Story List</h1>
+                        <h1 className="text-xl sm:text-2xl md:text-3xl font-semibold text-center mb-6 text-gray-800 tracking-tight">
+                            <ArrowBackIcon
+                                onClick={() => navigate('/')}
+                                sx={{
+                                    cursor: 'pointer',
+                                    fontSize: { xs: 15, sm: 20, md: 25 },
+                                    color: 'text.primary',
+                                    fontWeight: 'bold',
+                                    transform: 'translateY(-1.5px)', 
+                                    marginRight: 1,
+                                    transition: 'transform 0.2s ease-in-out',
+                                    '&:hover': {
+                                        transform: 'translate(-0.3rem, -1.5px)'
+                                    }
+                                }}
+                            /> Search results for "{searchData}"
+                        </h1>
                         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                            {animeList.length === 0
+                            {searchResult.length === 0
                                 ? Array.from(new Array(6)).map((_, i) => <AnimeListSkeleton key={i} />)
-                                : animeList.slice().reverse().map((anime, i) => {
+                                : searchResult.slice().reverse().map((anime, i) => {
                                     return (
 
                                         <Card
@@ -99,7 +94,7 @@ export function AnimeList() {
                                                         color: 'text.primary'
                                                     }}
                                                 >
-                                                    {anime?.anime_name}
+                                                    {anime.anime_name}
                                                 </Typography>
                                                 <Typography
                                                     variant="body2"
@@ -110,7 +105,7 @@ export function AnimeList() {
                                                     }}
                                                 >
                                                     {anime?.anime_description?.length > 100
-                                                        ? `${anime.anime_description.substring(0, 100)}...`
+                                                        ? `${anime?.anime_description?.substring(0, 100)}...`
                                                         : anime.anime_description}
                                                 </Typography>
                                             </CardContent>
@@ -160,15 +155,10 @@ export function AnimeList() {
                                     )
                                 })}
                         </div>
-
-
                     </>
                 }
             </div>
-
-
             <Footer />
-
         </>
     )
 }

@@ -10,6 +10,7 @@ import { useState, useEffect } from 'react';
 import axios from 'axios'; 
 import { UserProfile } from './UserProfile';
 import { FullPost } from './FullPost';
+import { SearchPage } from './SearchPage';
 
 function App() {
 
@@ -55,6 +56,7 @@ function App() {
           <Route path='/register' element={<RegisterForm />} />
           <Route path='/profile/:id' element={<UserProfile currentUser={currentUser} />} />
           <Route path='/fullpost/:id' element={<FullPost currentUser={currentUser} /> } />
+          <Route path='/search' element={<SearchPage /> } />
         </Routes>
       </BrowserRouter>
     </>
