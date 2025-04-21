@@ -14,6 +14,8 @@ import { Footer } from "./Footer";
 import { Search } from "./Search";
 import { CircularProgress, Box, Stack, Alert } from "@mui/material";
 
+import Avatar from "boring-avatars";
+
 
 export function AnimeList() {
 
@@ -139,7 +141,30 @@ export function AnimeList() {
                                                     to={`/profile/${anime?.author?.id}`}
                                                     className="flex items-center text-gray-600 hover:text-gray-800 transition-colors duration-200"
                                                 >
-                                                    <box-icon name='user-circle' type='solid' size="sm"></box-icon>
+                                                    <Avatar
+                                                        size={25}
+                                                        name={anime?.author?.username}
+                                                        variant="beam"
+                                                        colors={
+                                                            [
+                                                                "#FF6B6B", // Soft Red
+                                                                "#6BCB77", // Fresh Green
+                                                                "#4D96FF", // Cool Blue
+                                                                "#FFD93D", // Bright Yellow
+                                                                "#FF6F91", // Pinkish Red
+                                                                "#845EC2", // Deep Purple
+                                                                "#00C9A7", // Teal
+                                                                "#F9A826", // Warm Orange
+                                                                "#2C73D2", // Royal Blue
+                                                                "#D65DB1", // Light Magenta
+                                                                "#0081CF", // Sky Blue
+                                                                "#FFC75F", // Sunflower
+                                                                "#B0A8B9", // Cool Gray
+                                                                "#FF9671", // Coral
+                                                                "#7C83FD"  // Indigo Blue
+                                                            ]
+                                                        }
+                                                    />
                                                     <Typography
                                                         variant="body2"
                                                         sx={{

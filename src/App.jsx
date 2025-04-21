@@ -11,6 +11,7 @@ import axios from 'axios';
 import { UserProfile } from './UserProfile';
 import { FullPost } from './FullPost';
 import { SearchPage } from './SearchPage';
+import {ScrollToTop} from './ScrollToTop';
 
 function App() {
 
@@ -48,6 +49,7 @@ function App() {
     <>
       <BrowserRouter>
         <Navbar setCurrentUser={setCurrentUser} currentUser={currentUser}/>
+        <ScrollToTop/>
         <Routes>
           <Route path='/' element={<AnimeList currentUser={currentUser} />} />
           <Route path='/create' element={<AnimeForm />} />
