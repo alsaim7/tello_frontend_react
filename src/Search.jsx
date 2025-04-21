@@ -8,6 +8,8 @@ import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
 import SearchIcon from '@mui/icons-material/Search';
 
+import ClearRoundedIcon from '@mui/icons-material/ClearRounded';
+
 export function Search({setLoader, setError, setOpen}) {
     const [searchData, setSearchData] = useState('')
     const navigate = useNavigate()
@@ -77,11 +79,26 @@ export function Search({setLoader, setError, setOpen}) {
                     name="search"
                     value={searchData}
                 />
-
-                <Divider sx={{ height: 28, m: 0.5 }} orientation="vertical" />
-                <IconButton type="submit" sx={{ p: '10px' }} aria-label="search">
-                    <SearchIcon/>
-                </IconButton>
+                
+                {!searchData ? (
+                    <>
+                        <Divider sx={{ height: 28, m: 0.5 }} orientation="vertical" />
+                        <IconButton type="submit" sx={{ p: '10px' }} aria-label="search">
+                            <SearchIcon />
+                        </IconButton>
+                    </>
+                ) : (
+                    <>
+                        <IconButton type="button" sx={{ p: '10px' }} aria-label="clear">
+                            <ClearRoundedIcon onClick={()=> setSearchData("")}/>
+                        </IconButton>
+                        <Divider sx={{ height: 28, m: 0.5 }} orientation="vertical" />
+                        <IconButton type="submit" sx={{ p: '10px' }} aria-label="search">
+                            <SearchIcon />
+                        </IconButton>
+                    </>
+                )}
+                
             </Paper>
         </>
     )
