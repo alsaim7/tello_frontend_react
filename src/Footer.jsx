@@ -6,7 +6,6 @@ export function Footer(){
                     <img src="https://res.cloudinary.com/dnkqy2kkr/image/upload/v1745074098/logo-transparent_ut9qt7.png" alt="dark" style={{ width: '100px' }} />
                 </div>
                 
-                {/* <h1 className="text-center mb-4">My Tello</h1> */}
 
                 <ul className="flex justify-center gap-6 mb-6 text-gray-300 font-bold">
                     <li>
@@ -20,17 +19,6 @@ export function Footer(){
                     </li>
                 </ul>
 
-                {/* <div className="footer__social">
-                    <a href="" className="footer__social-link footerSocial" target="_blank" rel="noopener noreferrer">
-                        <i className='bx bxl-instagram'></i>
-                    </a>
-                    <a href="" className="footer__social-link footerSocial" target="_blank" rel="noopener noreferrer">
-                        <i className='bx bxl-github'></i>
-                    </a>
-                    <a href="" className="footer__social-link footerSocial" target="_blank" rel="noopener noreferrer">
-                        <i className='bx bxl-linkedin'></i>
-                    </a>
-                </div> */}
 
                 <span className="text-center block font-normal text-sm">&#169; 2025 MyTello</span>
             </div>
